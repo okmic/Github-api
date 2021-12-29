@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { SearchForm } from './components/SearchForm'
+import { SearchResult } from './components/SearchResult'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export type UserType = {
+  login: string
+  id: number
+  avatar_url: string
+  followers: number
 }
 
-export default App;
+export type SearchUsersType = {
+  login: string
+  id: number
+}
+
+export type SeatchResolt = {
+  items: Array<SearchUsersType>
+}
+
+function App() {
+
+  const [users, setUsers] = useState<Array<SearchUsersType> | null>(null)
+  const [serch, setSetch] = useState<string>("alpha")
+
+  useEffect(() => {
+    setUsers(null)
+     axios.get<SeatchResolt>(`https://api.github.com/search/users?q=${serch}`)
+      .then(response => {
+        setUsers(response.data.items)
+      }) 
+  }, [serch])
+
+  return (
+    <>
+      <SearchForm setSetch={setSetch} />
+      <SearchResult users={users} />
+    </>
+  )
+}
+
+export default App
