@@ -22,19 +22,19 @@ export type SeatchResolt = {
 function App() {
 
   const [users, setUsers] = useState<Array<SearchUsersType> | null>(null)
-  const [serch, setSetch] = useState<string>("alpha")
-
+  const [search, setSeatch] = useState<string>("alpha-lucky")
+ 
   useEffect(() => {
     setUsers(null)
-     axios.get<SeatchResolt>(`https://api.github.com/search/users?q=${serch}`)
+     axios.get<SeatchResolt>(`https://api.github.com/search/users?q=${search}`)
       .then(response => {
         setUsers(response.data.items)
       }) 
-  }, [serch])
+  }, [search])
 
   return (
     <>
-      <SearchForm setSetch={setSetch} />
+      <SearchForm setSeatch={setSeatch}  />
       <SearchResult users={users} />
     </>
   )
