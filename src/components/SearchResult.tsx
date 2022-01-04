@@ -30,14 +30,15 @@ export const SearchResult: React.FC<PropsType> = ({ users }) => {
 
   useEffect(()=> {
     if(selectedUser?.id === userDetails?.id){
-    setTimeout(() => {
+    let timeout = setTimeout(() => {
       if(selectedUser && selectedUser.id === userDetails?.id){
       setUserDetails(null)
       setSelectedUser(null)
       setTiner(false)
       }
     }, 60000)
-  } 
+    return () =>  clearTimeout(timeout)
+  }
   }, [timer])
 
   return <div className={styles.resultatContainer}>
