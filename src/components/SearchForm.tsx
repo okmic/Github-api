@@ -7,7 +7,7 @@ type PropsType = {
 
 export const SearchForm: React.FC<PropsType> = ({ setSeatch }) => {
 
-  const [inputValue, setInput] = useState<string>('Alpha-lucky')
+  const [inputValue, setInput] = useState<string>('okmic')
 
   return <div className={stales.wrapper}>
     <input type="text" value={inputValue} onChange={(e) => setInput(e.target.value)} /> 
