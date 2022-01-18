@@ -11,7 +11,7 @@ type PropsType = {
 export const SearchResult: React.FC<PropsType> = ({ users }) => {
 
   const [userDetails, setUserDetails] = useState<UserType | null>( null)
-  const [selectedUser, setSelectedUser] = useState<SearchUsersType | null>(() => ({login: "Alpha-Lucky", id: 80267051}))
+  const [selectedUser, setSelectedUser] = useState<SearchUsersType | null>(() => ({login: "okmic", id: 80267051}))
   const [timer, setTiner] = useState(false)
 
   useEffect(() => {

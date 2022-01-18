@@ -22,7 +22,7 @@ export type SeatchResolt = {
 function App() {
 
   const [users, setUsers] = useState<Array<SearchUsersType> | null>(null)
-  const [search, setSeatch] = useState<string>("alpha-lucky")
+  const [search, setSeatch] = useState<string>("okmic")
  
   useEffect(() => {
     setUsers(null)
